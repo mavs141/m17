@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Homework</string>
+
+    <string name="search_hint">Please input </string>
+    <string name="search_button_text">SEARCH!!</string>
+
+    <string name="fragment_using_recyclerview">RecyclerView</string>
+    <string name="fragment_using_epoxy">Epoxy</string>
+</resources>
