@@ -5,6 +5,7 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 abstract class BaseFragment : Fragment() {
     protected val viewModel by viewModel<FragmentViewModel>()
+    private var toast: Toast? = null
 
     protected val decoration = object : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(
@@ -30,6 +32,13 @@ abstract class BaseFragment : Fragment() {
             outRect.bottom = if (position == state.itemCount - 1) 0 else margin
             outRect.left = margin
             outRect.right = margin
+        }
+    }
+
+    protected fun showToast(message: String) {
+        toast?.cancel()
+        toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT).apply {
+            show()
         }
     }
 

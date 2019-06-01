@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.myapplication.R
 import com.example.myapplication.adapter.UserInfoPagedController
@@ -24,7 +23,7 @@ class EpoxyFragment : BaseFragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.btnSearch.setOnClickListener { viewModel.onSearch() }
-        binding.recyclerView.apply {
+        binding.epoxyRecyclerView.apply {
             setController(userInfoController)
             addItemDecoration(decoration)
         }
@@ -34,12 +33,8 @@ class EpoxyFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.pagedInfo.observe(this, NonNullObserver {
-            userInfoController.submitList(it)
-        })
+        viewModel.pagedInfo.observe(this, NonNullObserver { userInfoController.submitList(it) })
 
-        userInfoController.clickEvent.observe(this, NonNullObserver {
-            Toast.makeText(activity, "選擇${it.name}", Toast.LENGTH_SHORT).show()
-        })
+        userInfoController.clickEvent.observe(this, NonNullObserver { showToast("選擇${it.name}") })
     }
 }
