@@ -3,6 +3,7 @@ package com.example.myapplication.di
 import com.example.myapplication.ConstValue
 import com.example.myapplication.network.GithubService
 import com.example.myapplication.repository.PagingRepository
+import com.example.myapplication.viewmodel.ActivityViewModel
 import com.example.myapplication.viewmodel.FragmentViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val viewModelModule = module {
     viewModel { FragmentViewModel(get()) }
+    viewModel { ActivityViewModel() }
 }
 
 val repositoryModule = module {
